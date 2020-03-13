@@ -67,6 +67,8 @@ def get_rigs(base_dir, base_path, *, path=[], feature_set=feature_set_list.DEFAU
             key = '.'.join(subpath)
             # Don't reload rig modules - it breaks isinstance
             rig_module = importlib.import_module('.'.join(base_path + subpath))
+            print("Imported rig module: ")
+            print(rig_module)
             if hasattr(rig_module, "Rig"):
                 rigs[key] = {"module": rig_module,
                              "feature_set": feature_set}

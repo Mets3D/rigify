@@ -89,7 +89,11 @@ def get_info_dict(feature_set):
 
 def get_ui_name(feature_set):
     # Try to get user-defined name
+    print("Getting ui name of feature set:")
+    print(feature_set)
     info = get_info_dict(feature_set)
+    print("info dict:")
+    print(info)
     if 'name' in info:
         return info['name']
 
