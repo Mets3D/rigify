@@ -162,6 +162,8 @@ class Generator(base_generate.BaseGenerator):
 
         bpy.ops.object.duplicate()
 
+        self.__rename_org_bones(bpy.context.view_layer.objects.active)
+
         # Select the target rig and join
         select_object(context, obj)
 
@@ -192,8 +194,9 @@ class Generator(base_generate.BaseGenerator):
                             tar.data_path = "RIGIFY-" + tar.data_path
 
 
-    def __rename_org_bones(self):
-        obj = self.obj
+    def __rename_org_bones(self, obj=None):
+        if not obj:
+            obj = self.obj
 
         #----------------------------------
         # Make a list of the original bones so we can keep track of them.
@@ -370,7 +373,7 @@ class Generator(base_generate.BaseGenerator):
         # Add the ORG_PREFIX to the original bones.
         bpy.ops.object.mode_set(mode='OBJECT')
 
-        self.__rename_org_bones()
+        # self.__rename_org_bones()
 
         t.tick("Make list of org bones: ")
 
